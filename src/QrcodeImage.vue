@@ -2,7 +2,11 @@
 import { ref, watch } from 'vue';
 import { Encoder } from '@nuintun/qrcode';
 
-const props = defineProps<{ value?: string; size?: number }>();
+const props = defineProps<{
+  value?: string;
+  size?: number;
+  margin?: number;
+}>();
 
 const imgSrc = ref();
 
@@ -12,7 +16,7 @@ watch(
     if (val) {
       const qrcode = new Encoder();
       qrcode.write(val).make();
-      imgSrc.value = qrcode.toDataURL(props.size);
+      imgSrc.value = qrcode.toDataURL(props.size, props.margin);
     }
   },
   { immediate: true },
