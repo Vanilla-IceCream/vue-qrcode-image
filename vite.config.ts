@@ -13,8 +13,14 @@ export default defineConfig({
       external: ['vue', '@nuintun/qrcode'],
     },
   },
-  plugins: [vue(), dts()],
+  plugins: [
+    vue(),
+    dts({
+      exclude: ['**/__tests__/**'],
+    }),
+  ],
   test: {
+    globals: true,
     environment: 'happy-dom',
   },
 });
